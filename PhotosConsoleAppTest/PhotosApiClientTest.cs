@@ -83,4 +83,46 @@ public class PhotosApiClientTest
         // Assert
         Assert.Null(photo);
     }
+
+    /// <summary>
+    /// Provides an ID that is in the database.
+    /// Since the album exists, it should return an Album object
+    /// with all details provided.
+    /// </summary>
+    [Fact]
+    public async void Test_GetAlbumAsync_KnownId()
+    {
+        // Define
+        var baseAddress = "https://jsonplaceholder.typicode.com";
+        PhotosApiClient api = new PhotosApiClient(baseAddress);
+        int id = 23;
+
+        // Process
+        Album? album = await api.GetAlbumAsync(id);
+
+        // Assert
+        Assert.NotNull(album);
+        Assert.Equal(23, album.Id);
+        Assert.Equal(3, album.UserId);
+        Assert.Equal("incidunt quisquam hic adipisci sequi", album.Title);
+    }
+
+    /// <summary>
+    /// Provides an ID that is not available withing the database.
+    /// Since the album does not exist, it should return null.
+    /// </summary>
+    [Fact]
+    public async void Test_GetAlbumAsync_UnknownId()
+    {
+        // Define
+        var baseAddress = "https://jsonplaceholder.typicode.com";
+        PhotosApiClient api = new PhotosApiClient(baseAddress);
+        int id = 18900000;
+
+        // Process
+        Album? album = await api.GetAlbumAsync(id);
+
+        // Assert
+        Assert.Null(album);
+    }
 }
