@@ -1,51 +1,63 @@
-## Showcase - ConsoleApp - PhotoAlbum
+# Showcase - ConsoleApp - PhotoAlbum
 
 This is a simple C# console application to demonstrate making HTTP GET requests and usage of Unit Tests.
+
+The main script retrieves a list of all albums then cycles through each. It uses the album `id` to request all related photos and lists them on the console.
+
+- The API calls retrieve JSON documents reprenting photos and albums. They are deserialized into `Photo` and `Album` objects.
+- Each API call has associated unit tests to verify they work in known conditions.
+- Each model has associated unit tests to verify that the getter/setters are honored.
 
 ### Requirements
 - .Net 6.0 [(download)](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) - (developed using SDK 6.0.404)
 
+
 ## Developer Notes
 This project was developed using VS Code. There are pre-configured settings in the `.vscode` folder to use the built-in debug tools.
 
-### Extenions
+### Extensions
 - C# by Microsoft [(ms-dotnettools.csharp)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 - .NET Core Test Explorer [(formulahendry.dotnet-test-explorer)](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer)
 
-## Architecture
+### Architecture
 The application and its unit tests are separated into two folders.
 - **PhotosConsoleApp** - The main program. 
 - **PhotosConsoleAppTest** - Verifies the API calls and console interactions.
 
+
+# Debugging 
 ## How to Debug (using Visual Studio Code)
 1. Within VS Code, on the left navigation bar, click the tab `Run and Debug`.
 2. At the top, ensure `PhotosConsoleApp` is selected.
 3. Press the green play icon.
     - VS Code will switch to the internal terminal view and start the program with debugging enabled.
 
-## How to Test (using Visual Studio Code)
+
+# Testing
+## How to Test -- using Visual Studio Code
 1. On the left navigation bar, click the tab `Testing`.
     - A list of all unit tests should be displayed.
 1. Find the test with the same name as your method.
-1. Press the play button.
-    -VS Code will provide feedback about pass/fail.
+1. Press the play button, and wait for it to run.
+    - VS Code will provide feedback about pass/fail.
 
-## How to Test (using command line)
-All tests for all modules
+## How to Test -- using command line
+All modules:
 ```bash
 dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj
 ```
 
-All tests for a module
+A single module:
 ```bash
 dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj --filter "PhotosApiClientTest"
 ```
 
-A single unit test
+A single method:
 ```bash
 dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj --filter "PhotosApiClientTest.Test_PhotosApiClientTest_Loads"
 ```
 
+# Build and Run -- the manual way...
 ## How to Build (Release)
 From the root directory, run the following command:
 ```bash
