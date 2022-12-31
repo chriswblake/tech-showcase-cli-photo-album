@@ -12,6 +12,10 @@ This project was developed using VS Code. There are pre-configured settings in t
 - C# by Microsoft [(ms-dotnettools.csharp)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 - .NET Core Test Explorer [(formulahendry.dotnet-test-explorer)](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer)
 
+## Architecture
+The application and its unit tests are separated into two folders.
+- **PhotosConsoleApp** - The main program. 
+- **PhotosConsoleAppTest** - Verifies the API calls and console interactions.
 
 ## How to Debug (using Visual Studio Code)
 1. Within VS Code, on the left navigation bar, click the tab `Run and Debug`.
@@ -19,6 +23,28 @@ This project was developed using VS Code. There are pre-configured settings in t
 3. Press the green play icon.
     - VS Code will switch to the internal terminal view and start the program with debugging enabled.
 
+## How to Test (using Visual Studio Code)
+1. On the left navigation bar, click the tab `Testing`.
+    - A list of all unit tests should be displayed.
+1. Find the test with the same name as your method.
+1. Press the play button.
+    -VS Code will provide feedback about pass/fail.
+
+## How to Test (using command line)
+All tests for all modules
+```bash
+dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj
+```
+
+All tests for a module
+```bash
+dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj --filter "PhotosApiClientTest"
+```
+
+A single unit test
+```bash
+dotnet test PhotosConsoleAppTest/PhotosConsoleAppTest.csproj --filter "PhotosApiClientTest.Test_PhotosApiClientTest_Loads"
+```
 
 ## How to Build (Release)
 From the root directory, run the following command:
