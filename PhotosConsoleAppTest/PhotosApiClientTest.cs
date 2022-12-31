@@ -1,4 +1,3 @@
-namespace ConsoleAppTests;
 using PhotosConsoleApp;
 using PhotosConsoleApp.Models;
 using sr = System.Reflection;
