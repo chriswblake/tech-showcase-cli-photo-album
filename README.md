@@ -62,3 +62,21 @@ Alternately, you can run the already built `.dll` directly.
 ```bash
 dotnet PhotosConsoleApp/bin/Release/net6.0/PhotosConsoleApp.dll
 ```
+
+# Building a Standalone Executable
+The following commands will build the project into a single file that can be distributed. Here are examples for MacOS and Windows. Below is documentation for targeting other operating systems and architectures.
+
+> Ref: [Docs: donet publish](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) - Publishes the application and its dependencies to a folder for deployment to a hosting system
+
+> Ref: [Runtime Identifiers](https://learn.microsoft.com/en-us/dotnet/core/rid-catalog) - NET packages to represent platform-specific assets.
+
+## For MacOS
+From the root directory, run the following command:
+```bash
+dotnet publish PhotosConsoleApp/PhotosConsoleApp.csproj --output "Standalone/osx-x64" --runtime osx-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained=true
+```
+
+## For Windows
+```bash
+dotnet publish PhotosConsoleApp/PhotosConsoleApp.csproj --output "Standalone/win-x64" --runtime win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained=true
+```
