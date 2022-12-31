@@ -165,4 +165,23 @@ public class PhotosApiClientTest
         // Assert
         Assert.Empty(photos);
     }
+
+    /// <summary>
+    /// Retrieves all albums from the database, in a list.
+    /// </summary>
+    [Fact]
+    public async void Test_GetAlbumsAsync_All()
+    {
+        // Define
+        var baseAddress = "https://jsonplaceholder.typicode.com";
+        PhotosApiClient api = new PhotosApiClient(baseAddress);
+
+        // Process
+        List<Album?> albums = await api.GetAlbumsAsync();
+
+        // Assert
+        Assert.NotEmpty(albums);
+        Assert.Equal(100, albums.Count);
+    }
+
 }

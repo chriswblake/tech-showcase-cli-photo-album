@@ -108,5 +108,34 @@ namespace PhotosConsoleApp {
             // Return result
             return photos;
         }
+        public async Task<List<Album?>> GetAlbumsAsync()
+        {
+            List<Album?> albums = new List<Album?>();
+            
+            // Query the API
+            string uri = "albums";
+            try {
+                albums = await this.httpClient.GetFromJsonAsync<List<Album?>>(uri) ?? new List<Album?>();
+            }
+            // Handle bad requests or errors.
+            catch (HttpRequestException e)
+            {
+                switch(e.StatusCode){
+                    case HttpStatusCode.NotFound:
+                        Console.WriteLine($"GetAlbumsAsync: NotFound");
+                        break;
+                    default:
+                        Console.WriteLine($"GetAlbumsAsync: HTTPStatusCode: {e.StatusCode} - {e.Message}");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"GetAlbumsAsync: Unknown Exception: {e.Message}");
+            }
+
+            // Return result
+            return albums;
+        }
     }
 }
